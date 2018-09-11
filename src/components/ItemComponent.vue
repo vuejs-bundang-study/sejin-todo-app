@@ -1,40 +1,42 @@
 <template>
-  <li :class="{ 'removed': item.checked}">
     <div class="checkbox">
-      <label>
-        <input type="checkbox" v-model="item.checked"> {{item.text}}
-        <remove-item-component :item="item"></remove-item-component>
-        <pomodoro-component></pomodoro-component>
-      </label>
+      <v-layout justify-center>
+        <v-flex xs6>
+          <v-card color="blue-grey" class="white--text">
+            <v-flex text-xs-right>
+              <v-btn
+                small color = "blue-grey darken-2"
+                class="white--text"
+                v-on:click="removeItem">
+                <v-icon>clear</v-icon>
+              </v-btn>
+            </v-flex>
+            <p class = "headline text-xs-center">{{item.text}}</p>
+            <v-card color="white">
+              <pomodoro-component></pomodoro-component>
+            </v-card>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </div>
-  </li>
 </template>
 
 <script>
-import RemoveItemComponent from './RemoveItemComponent'
 import PomodoroComponent from './PomodoroComponent'
 
 export default {
   components: {
-    RemoveItemComponent,
     PomodoroComponent
   },
-  props: ['item']
+  props: ['item'],
+  methods: {
+    removeItem: function () {
+      this.$emit('remove')
+    }
+  }
 }
 </script>
 
 <style>
-  .container {
-    width: 50%;
-    margin: 20px auto 0px auto;
-  }
-  .removed {
-    color: gray;
-  }
-  .removed label {
-    text-decoration: line-through;
-  }
-  /* ul li {
-    list-style-type: none;
-  } */
+
 </style>

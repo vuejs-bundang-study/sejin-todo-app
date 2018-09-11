@@ -1,9 +1,23 @@
 <template>
   <div class="input-group">
-    <input @keyup.enter="addItem" v-model="newItem" placeholder="add todo list item" type="text" class="form-control">
-    <span class="input-group-btn">
-      <button @click="addItem" class="btn btn-default" type="button">Add!</button>
-    </span>
+    <v-layout justify-center>
+      <v-flex xs7 pl-5>
+        <v-text-field
+          @keyup.enter="addItem"
+          v-model="newItem"
+          placeholder="할 일을 입력하세요."
+          type="text"
+          class="form-control"
+        ></v-text-field>
+      </v-flex>
+      <v-flex xs1>
+        <v-btn color = "blue-grey darken-4"
+          class="white--text font-weight-bold title"
+          @click="addItem"
+          type="button">Add!
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
